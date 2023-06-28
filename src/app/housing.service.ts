@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Housinglocation } from './housinglocation';
+import { Person } from './person';
 
 @Injectable({
   providedIn: 'root',
@@ -126,5 +127,11 @@ export class HousingService {
 
   getHousingLocationById(id: number): Housinglocation | undefined {
     return this.housingLocationList.find((hl) => hl.id === id);
+  }
+
+  submitApplication(person: Person) {
+    console.log(
+      `Homes application received: firstName: ${person.firstName}, lastName: ${person.lastName}, email: ${person.email}.`
+    );
   }
 }

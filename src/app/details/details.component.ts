@@ -3,11 +3,12 @@ import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { HousingService } from '../housing.service';
 import { Housinglocation } from '../housinglocation';
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-details',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ReactiveFormsModule],
   template: `
     <article>
       <img
@@ -49,4 +50,10 @@ export class DetailsComponent {
       this.housingLocationId
     );
   }
+
+  applyForm = new FormGroup({
+    firstName: new FormControl(''),
+    lastName: new FormControl(''),
+    email: new FormControl(''),
+  });
 }
