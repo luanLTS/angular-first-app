@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Housinglocation } from './housinglocation';
 import { Person } from './person';
+import { retryWhen } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -127,6 +128,12 @@ export class HousingService {
 
   getHousingLocationById(id: number): Housinglocation | undefined {
     return this.housingLocationList.find((hl) => hl.id === id);
+  }
+
+  getFilteredLocation(searchTerm: string) {
+    return this.housingLocationList.filter((hl) =>
+      hl?.city.toLowerCase().includes(searchTerm.toLowerCase())
+    );
   }
 
   submitApplication(person: Person) {
