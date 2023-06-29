@@ -32,6 +32,20 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
           </li>
         </ul>
       </section>
+      <section class="listeng-apply">
+        <h2 class="section-heading">Apply now to live here</h2>
+        <form [formGroup]="applyForm" (submit)="submitApplication()">
+          <label for="first-name">First Name</label>
+          <input type="text" id="first-name" formControlName="firstName" />
+
+          <label for="last-name">Last Name</label>
+          <input type="text" id="last-name" formControlName="lastName" />
+
+          <label for="email">Email</label>
+          <input type="text" id="email" formControlName="email" />
+          <button class="primary">Apply now</button>
+        </form>
+      </section>
     </article>
   `,
   styleUrls: ['./details.component.css'],
@@ -56,4 +70,12 @@ export class DetailsComponent {
     lastName: new FormControl(''),
     email: new FormControl(''),
   });
+
+  submitApplication() {
+    this.housingService.submitApplication({
+      firstName: this.applyForm.value.firstName ?? '',
+      lastName: this.applyForm.value.lastName ?? '',
+      email: this.applyForm.value.email ?? '',
+    });
+  }
 }
